@@ -1,4 +1,23 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
+
+<div>
+  {% block content %}
+
+  <div class="block">
+    {% for item in message_list %}
+    <p>{{item.checked}} - {{item.text}}</p>
+    {% endfor %}
+  </div>
+
+  <form method="post">
+    {% csrf_token %}
+    <div class="field">
+      <input name="text" type="text" class="input" />
+    </div>
+
+    <input type="submit" value="Send" class="button is-primary" />
+  </form>
+</div>
 
 <script>
   const url = `ws://${window.location.host}/ws/chat/`;

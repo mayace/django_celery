@@ -28,6 +28,10 @@ services:
   celery:
     build: .
     command: celery -A django_redis worker -l INFO
+    environment:
+      - POSTGRES_NAME=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
     depends_on:
       - django
       - redis

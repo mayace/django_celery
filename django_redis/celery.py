@@ -13,5 +13,13 @@ app = Celery("django_redis")
 #   should have a `CELERY_` prefix.
 app.config_from_object("django.conf:settings", namespace="CELERY")
 
+
+app.conf.beat_schedule = {
+    "check_messages_10s": {
+        "task": "chat.tasks.check_messages",
+        "schedule": 10.0,
+    },
+}
+
 # Load task modules from all registered Django apps.
 app.autodiscover_tasks()
