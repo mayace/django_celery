@@ -73,10 +73,11 @@ TEMPLATES = [
 WSGI_APPLICATION = "django_redis.wsgi.application"
 ASGI_APPLICATION = "django_redis.asgi.application"
 
+# Celery
+CELERY_BROKER_URL = "redis://redis:6379"
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
@@ -88,6 +89,8 @@ DATABASES = {
     }
 }
 
+
+# channels
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",

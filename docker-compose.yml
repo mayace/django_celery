@@ -25,3 +25,11 @@ services:
       - redis
   redis:
     image: redis:6
+  celery:
+    build: .
+    command: celery -A django_redis worker -l INFO
+    depends_on:
+      - django
+      - redis
+    volumes:
+      - .:/app
